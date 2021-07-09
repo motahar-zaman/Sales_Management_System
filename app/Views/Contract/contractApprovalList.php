@@ -167,39 +167,6 @@
                                                 <td>2021/04/06</td>
                                                 <td>2021/04/06</td>
                                             </tr>
-                                            <?php
-/*                                                if(isset($contracts) && count($contracts) > 0){
-                                                    foreach ($contracts as $contract) {
-                                                        $contractId = $contract->getId();
-                                                        $contractDate = date("Y",strtotime($contract->getUpdateDate()))."年".date("m",strtotime($contract->getUpdateDate()))."月".date("d",strtotime($contract->getUpdateDate()))."日";
-                                                        $products = $contract->getContractProduct();
-
-                                                        foreach($products as $product){
-                                                            $shop = $product["shopDetails"];
-                                                            $startDate = date("Y",strtotime($product["startDate"]))."年".date("m",strtotime($product["startDate"]))."月".date("d",strtotime($product["startDate"]))."日";
-                                                            $endDate = date("Y",strtotime($product["endDate"]))."年".date("m",strtotime($product["endDate"]))."月".date("d",strtotime($product["endDate"]))."日";
-                                                            */?><!--
-                                                                <tr>
-                                                                    <td><a href='/contract-details/<?/*= $contractId */?>'><?/*= $contractId */?></a></td>
-                                                                    <td><?/*= $product["serviceType"] */?></td>
-                                                                    <td><?/*= $shop->getName() */?></td>
-                                                                    <td><?/*= $shop->getAddress01() */?></td>
-                                                                    <td><?/*= $shop->getTelNo() */?></td>
-                                                                    <td><?/*= $shop->getMailAddress() */?></td>
-                                                                    <td><?/*= $product["shopBusiness"] */?></td>
-                                                                    <td><?/*= $product["shopDaihyoName"] */?></td>
-                                                                    <td><?/*= $contractDate */?></td>
-                                                                    <td><?/*= $startDate */?></td>
-                                                                    <td><?/*= $endDate */?></td>
-                                                                </tr>
-                                                            --><?php
-/*                                                        }
-                                                    }
-                                                }
-                                                else{
-                                                    echo "<tr><td>データがありません！</td></tr>";
-                                                }
-                                            */?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -218,7 +185,6 @@
             </section>
         </div>
 
-        <script type="text/javascript" src="../../js/contractSearch.js"></script>
         <!-- jQuery -->
         <script src="../../plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->

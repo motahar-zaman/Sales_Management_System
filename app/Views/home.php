@@ -18,7 +18,7 @@
             <div class="container-fluid">
                 <div class="col-md-12 row">
                     <div class="col-md-6 pt-2">
-                        <span>WEB契約システム </span>
+                        <span>販売管理システム</span>
                         <span><h1 class="mb-0 pt-2">メニュー</h1></span>
                     </div>
                     <div class="col-md-6 text-right pt-2">
@@ -40,11 +40,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><a href="#">契約承認申請一覧<br> Contract approval appli. list</a></td>
+                                            <td><a href="/contract-approval-list">契約承認申請一覧<br> Contract approval appli. list</a></td>
                                             <td>Web契約で成約に至った契約を一覧表示します。<br>また、一覧から成約した契約の一括承認を行います。</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">契約承認申請詳細<br>Contract appro. appli. detail</a></td>
+                                            <td><a href="/contract-details">契約承認申請詳細<br>Contract appro. appli. detail</a></td>
                                             <td>１契約の内容を詳細表示します。<br>また、当該契約の承認を行います。</td>
                                         </tr>
                                     </tbody>
