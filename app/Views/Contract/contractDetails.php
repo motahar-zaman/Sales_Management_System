@@ -55,11 +55,27 @@
                                         <div class="col-md-6">
                                             <div class="form-group " >
                                                 <label>契約ID</label>
-                                                <input type="text" class="form-control " name="contractIdSearch" id="contractIdSearch" value="" >
+                                                <input type="text" class="form-control " name="contractIdSearch" id="contractIdSearch" value="<?= $contract->getId() ?? "" ?>" >
                                             </div>
                                             <div class="form-group " >
+                                                <?php
+                                                $status = $contract->getStatus();
+                                                $text = "Not defined";
+                                                if($status == contract_create){
+                                                    $text = "仮契約";
+                                                }
+                                                elseif($status == contract_approved_by_contractor){
+                                                    $text = "内部確認01";
+                                                }
+                                                if($status == contract_approved_by_employee){
+                                                    $text = "成約";
+                                                }
+                                                if($status == contract_edit_by_employee){
+                                                    $text = "契約更新";
+                                                }
+                                                ?>
                                                 <label>契約ステータス</label>
-                                                <input type="text" class="form-control " name="contractStatus" id="contractStatus" value="内部確認02" readonly>
+                                                <input type="text" class="form-control " name="contractStatus" id="contractStatus" value="<?= $text ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-6 pt-4">
@@ -280,20 +296,41 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>内部確認02</td>
-                                                <td>ぴゅあらば</td>
-                                                <td>契約店舗名</td>
-                                                <td>契約店舗名</td>
-                                                <td>商品名</td>
-                                            </tr>
-                                            <tr>
-                                                <td>内部確認02</td>
-                                                <td>ぴゅあらば</td>
-                                                <td>契約店舗名</td>
-                                                <td>契約店舗名</td>
-                                                <td>商品名</td>
-                                            </tr>
+                                            <?php
+                                                $products = $contract->getContractProduct();
+                                                if(isset($products) && count($products) > 0){
+                                                    for($i = 0; $i < count($products); $i++){
+                                                        $data = $products[$i];
+                                                        $startDate = date("Y",strtotime($data["startDate"]))."年".date("m",strtotime($data["startDate"]))."月".date("d",strtotime($data["startDate"]))."日";
+                                                        $endDate = date("Y",strtotime($data["endDate"]))."年".date("m",strtotime($data["endDate"]))."月".date("d",strtotime($data["endDate"]))."日";
+                                                        $filePath = "/shopFiles".DIRECTORY_SEPARATOR;
+                                                        ?>
+                                                        <tr>
+                                                            <td><?= $data["productId"] ?></td>
+                                                            <td><?= $data["name"] ?></td>
+<!--                                                            <td>--><?//= $data["note"] ?><!--</td>-->
+                                                            <td><?= $data["shopName"] ?></td>
+                                                            <td>
+                                                                <?php
+                                                                if($data["shopNotification"]){
+                                                                    $filePath .= $data["shopNotification"];
+                                                                    echo "<a target=\"_blank\" href='".$filePath."'>あり</a>";
+                                                                }
+                                                                else{
+                                                                    echo " なし";
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td><?= $startDate ?></td>
+<!--                                                            <td>--><?//= $endDate ?><!--</td>-->
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                }
+                                                else{
+                                                    echo "データがありません！";
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
