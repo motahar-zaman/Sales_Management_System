@@ -101,12 +101,4 @@ class AuthController extends BaseController
         session()->destroy();
         return redirect()->to('/login');
     }
-
-    public function contractApprovalList(){
-        return view("Contract/contractApprovalList", ["title" => "Contract Approval List"]);
-    }
-
-    public function contractDetails(){
-        return view("Contract/contractDetails", ["title" => "Contract Details"]);
-    }
 }
