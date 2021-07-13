@@ -119,54 +119,37 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><a href='/contract-details'>契約ID</a></td>
-                                                <td>2021/04/06</td>
-                                                <td>内部確認02</td>
-                                                <td>ぴゅあらば</td>
-                                                <td>契約店舗名</td>
-                                                <td>商品名</td>
-                                                <td>3654135641</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href='/contract-details'>契約ID</a></td>
-                                                <td>2021/04/06</td>
-                                                <td>内部確認02</td>
-                                                <td>ぴゅあらば</td>
-                                                <td>契約店舗名</td>
-                                                <td>商品名</td>
-                                                <td>3654135641</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href='/contract-details'>契約ID</a></td>
-                                                <td>2021/04/06</td>
-                                                <td>内部確認02</td>
-                                                <td>ぴゅあらば</td>
-                                                <td>契約店舗名</td>
-                                                <td>商品名</td>
-                                                <td>3654135641</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href='/contract-details'>契約ID</a></td>
-                                                <td>2021/04/06</td>
-                                                <td>内部確認02</td>
-                                                <td>ぴゅあらば</td>
-                                                <td>契約店舗名</td>
-                                                <td>商品名</td>
-                                                <td>3654135641</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                                <td>2021/04/06</td>
-                                            </tr>
+                                            <?php
+                                                if(isset($contracts) && count($contracts) > 0){
+                                                    foreach ($contracts as $contract) {
+                                                        $contractId = $contract->getId();
+                                                        $contractDate = date("Y",strtotime($contract->getUpdateDate()))."年".date("m",strtotime($contract->getUpdateDate()))."月".date("d",strtotime($contract->getUpdateDate()))."日";
+                                                        $products = $contract->getContractProduct();
+
+                                                        foreach($products as $product){
+                                                            $startDate = date("Y",strtotime($product["startDate"]))."年".date("m",strtotime($product["startDate"]))."月".date("d",strtotime($product["startDate"]))."日";
+                                                            $endDate = date("Y",strtotime($product["endDate"]))."年".date("m",strtotime($product["endDate"]))."月".date("d",strtotime($product["endDate"]))."日";
+                                                            ?>
+                                                                <tr>
+                                                                    <td><a href='/contract-details/<?= $contractId ?>'><?= $contractId ?></a></td>
+                                                                    <td><?= $contractDate ?></td>
+                                                                    <td>内部確認02</td>
+                                                                    <td>ぴゅあらば</td>
+                                                                    <td><?= $product["shopName"] ?></td>
+                                                                    <td><?= $product["name"] ?></td>
+                                                                    <td><?= $product["price"] ?></td>
+                                                                    <td><?= $contractDate ?></td>
+                                                                    <td><?= $startDate ?></td>
+                                                                    <td><?= $endDate ?></td>
+                                                                </tr>
+                                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                                else{
+                                                    echo "<tr><td>データがありません！</td></tr>";
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
