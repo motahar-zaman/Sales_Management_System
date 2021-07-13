@@ -3,9 +3,7 @@
 namespace App\Models\Contract;
 
 
-use App\Models\Code\CodeModel;
 use App\Models\Database;
-use App\Models\Shop\ShopModel;
 
 class ContractModel
 {
@@ -94,5 +92,24 @@ class ContractModel
         $mapData["shopDaihyoName"] = $data->shop_daihyo_name ?? NULL;
 
         return $mapData;
+    }
+
+    public function getContractById($id){
+        $data = $this->getContractDataById($id);
+        return $this->mapContractData($data);
+    }
+
+    public function getContractDataById($id){
+        $queryString = "SELECT c.contract_id, c.contractor_id, c.tantou_id, c.status, c.note, c.update_date, c.update_user_id, c.insert_date,
+            c.insert_user_id, c.delete_flag, branch_no, p.shop_id, p.product_id, p.status AS product_status, DATE_FORMAT(mp.start_date, '%Y/%m/%d') AS start_date,
+            DATE_FORMAT(mp.end_date, '%Y/%m/%d') AS end_date, mp.product_note, mp.product_name, mp.price, mp.product_note, mp.service_type, mp.product_type,
+            mp.campaign_flag, mp.shop_type, s.shop_name, s.zipcode, s.address_01, s.tel_no, s.mail_address, si.shop_daihyo_name, si.notificate_file_path,
+            si.business FROM trn_web_contract_base AS c LEFT JOIN trn_contract_product AS p ON c.contract_id = p.contract_id LEFT JOIN mst_product AS mp ON
+            mp.product_id = p.product_id LEFT JOIN mst_shop AS s ON s.shop_id = p.shop_id LEFT JOIN trn_shop_info AS si ON s.shop_id = si.shop_id
+            WHERE c.contract_id = ? AND c.delete_flag = ?";
+
+        $queryParameter = array($id, 1);
+
+        return (new Database())->readQueryExecution($queryString, $queryParameter);
     }
 }
