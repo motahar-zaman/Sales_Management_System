@@ -81,3 +81,8 @@ define("BASE_URL", isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'htt
 
 const k1_employee_user_prefix = 'K1';
 const contractor_user_prefix = 'USR';
+
+const contract_create = 2;
+const contract_approved_by_contractor = 3;
+const contract_approved_by_employee = 6;
+const contract_edit_by_employee = 7;
