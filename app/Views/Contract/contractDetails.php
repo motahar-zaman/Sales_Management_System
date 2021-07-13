@@ -308,21 +308,9 @@
                                                         <tr>
                                                             <td><?= $data["productId"] ?></td>
                                                             <td><?= $data["name"] ?></td>
-<!--                                                            <td>--><?//= $data["note"] ?><!--</td>-->
-                                                            <td><?= $data["shopName"] ?></td>
-                                                            <td>
-                                                                <?php
-                                                                if($data["shopNotification"]){
-                                                                    $filePath .= $data["shopNotification"];
-                                                                    echo "<a target=\"_blank\" href='".$filePath."'>あり</a>";
-                                                                }
-                                                                else{
-                                                                    echo " なし";
-                                                                }
-                                                                ?>
-                                                            </td>
+                                                            <td style="width: 35%"><?= $data["note"] ?></td>
                                                             <td><?= $startDate ?></td>
-<!--                                                            <td>--><?//= $endDate ?><!--</td>-->
+                                                            <td><?= $endDate ?></td>
                                                         </tr>
                                                         <?php
                                                     }
