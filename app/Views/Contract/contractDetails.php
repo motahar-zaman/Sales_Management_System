@@ -363,10 +363,10 @@
                     <div class="row mx-auto pb-3" style="max-width: 950px">
                         <div class="col-md-9 pl-0">
                             <a class="btn btn-primary pl-3 pr-3 k1Btn k1Btn2 mr-3" href="#"> 戻る </a>
-                            <a href="#">
+                            <a href="/contract-status-update/<?= $contract->getId() ?>/<?= contract_approved_by_sales_employee ?>">
                                 <button id="contractApproveContractor" class="btn btn-primary pl-3 pr-3 k1Btn k1Btn2 mr-3">承認</button>
                             </a>
-                            <a href="#">
+                            <a href="/contract-status-update/<?= $contract->getId() ?>/<?= contract_approved_by_contractor ?>">
                                 <button id="contractApproveEmployee" class="btn btn-primary pl-3 pr-3 k1Btn k1Btn2 mr-3">承認却下</button>
                             </a>
                             <a class="btn btn-primary pl-3 pr-3 k1Btn k1Btn2 mr-3" href="/home">メニュー</a>

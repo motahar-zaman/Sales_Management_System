@@ -59,3 +59,4 @@ $routes->get('logout', 'Authentication\AuthController::logout');
 
 $routes->get('/contract-approval-list', 'Contract\ContractController::contractApprovalList');
 $routes->get('/contract-details/(:any)', 'Contract\ContractController::contractDetails/$1');
+$routes->get('contract-status-update/(:any)/(:any)', 'Contract\ContractController::contractStatusUpdate/$1/$2');

@@ -84,5 +84,6 @@ const contractor_user_prefix = 'USR';
 
 const contract_create = 2;
 const contract_approved_by_contractor = 3;
-const contract_approved_by_employee = 6;
+const contract_approved_by_employee = 4;
+const contract_approved_by_sales_employee = 6;
 const contract_edit_by_employee = 7;

@@ -4,6 +4,7 @@ namespace App\Controllers\Contract;
 
 
 use App\Controllers\BaseController;
+use App\Controllers\EmailController;
 use App\Models\Contract\ContractModel;
 use App\Models\Contractor\ContractorModel;
 
@@ -37,6 +38,25 @@ class ContractController extends BaseController
             );
 
             return view("Contract/contractDetails", $data);
+        }
+        else{
+            return redirect()->to("/login");
+        }
+    }
+
+    public function contractStatusUpdate($contractId, $status){
+        if( session() && session()->get('login') ){
+            $updateDate = date("Y-m-d H:i:s");
+            $updateUser = session()->get('userId');
+
+            (new ContractModel())->updateContractStatus($contractId, $status, $updateDate, $updateUser);
+            $contract = (new ContractModel())->getContractById($contractId)[$contractId];
+
+            /*if($status == contract_approved_by_sales_employee){
+                (new EmailController())->emailToEmployee($contract->getTantouId(), $contract->getContractorId(), $contract->getId());
+            }*/
+
+            return redirect()->to("/contract-approval-list");
         }
         else{
             return redirect()->to("/login");

@@ -22,7 +22,7 @@ class ContractModel
             s.shop_id = p.shop_id LEFT JOIN trn_shop_info AS si ON s.shop_id = si.shop_id LEFT JOIN mst_contractor AS cntr ON
             cntr.contractor_id = c.contractor_id WHERE c.delete_flag = ? AND c.status = ?";
 
-        $queryParameter = array(1, 2);
+        $queryParameter = array(1, 4);
 
         return (new Database())->readQueryExecution($queryString, $queryParameter);
     }
@@ -111,5 +111,13 @@ class ContractModel
         $queryParameter = array($id, 1);
 
         return (new Database())->readQueryExecution($queryString, $queryParameter);
+    }
+
+    public function updateContractStatus($contractId, $status, $updateDate, $updateUser){
+        $queryString = "UPDATE trn_web_contract_base SET status = ?, update_date = ?, update_user_id = ? WHERE contract_id = ?";
+
+        $queryParameter = array($status, $updateDate, $updateUser, $contractId);
+
+        return (new Database())->writeQueryExecution($queryString, $queryParameter);
     }
 }
